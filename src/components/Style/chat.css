@@ -40,7 +40,7 @@
   font-size: 1.8rem;
   font-weight: 800;
   background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
- 
+  -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   padding-bottom: 1.5rem;
   margin-bottom: 1.5rem;
@@ -235,12 +235,50 @@
 .message-content {
   word-break: break-word;
   line-height: 1.5;
+  position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .message-status {
   font-size: 0.75rem;
-  margin-left: 0.5rem;
-  opacity: 0.8;
+  margin-top: 0.5rem;
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.message:not(.own-message) .message-status {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.tick {
+  display: inline-block;
+  font-size: 0.9rem;
+  margin-left: 0.2rem;
+}
+
+.message-status.delivered .tick.double,
+.message-status.seen .tick.double {
+  position: relative;
+  margin-right: 3px;
+}
+
+.message-status.delivered .tick.double::before,
+.message-status.seen .tick.double::before {
+  content: '✓';
+  position: absolute;
+  left: -3px;
+}
+
+.message-status.seen {
+  color: #34D399;
+}
+
+.message:not(.own-message) .message-status.seen {
+  color: var(--primary-color);
 }
 
 .message-form {

@@ -312,6 +312,15 @@ function Chat({ logOut }) {
       
       // Emit message to server
       socketRef.current.emit('sendMessage', messageObj);
+      
+      // After a short delay, update the message status to 'delivered'
+      setTimeout(() => {
+        setMessages(prevMessages => 
+          prevMessages.map(msg => 
+            msg.id === messageId ? { ...msg, status: 'delivered' } : msg
+          )
+        );
+      }, 1000);
     } catch (error) {
       console.error('Error sending message:', error);
     }
@@ -516,6 +525,7 @@ function Chat({ logOut }) {
         handleTyping={handleTyping}
         setShowInviteUsers={setShowInviteUsers}
         deleteRoom={deleteRoom}
+        socketRef={socketRef}
       />
       
       <ChatModals 
