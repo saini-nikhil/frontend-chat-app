@@ -145,7 +145,7 @@ export const fetchAvailableRooms = async (username) => {
     console.log('Fetching available rooms for', username);
     
     // Get user-specific rooms
-    const userRoomsResponse = await fetch(`${ENDPOINT}/api/user-rooms/${username}`);
+    const userRoomsResponse = await fetch(`${API_URL}/api/rooms/user-rooms/${username}`);
     if (!userRoomsResponse.ok) {
       throw new Error(`HTTP error! status: ${userRoomsResponse.status}`);
     }
@@ -153,7 +153,7 @@ export const fetchAvailableRooms = async (username) => {
     console.log('User-specific rooms:', userRooms);
     
     // Get public rooms
-    const publicRoomsResponse = await fetch(`${ENDPOINT}/api/rooms`);
+    const publicRoomsResponse = await fetch(`${API_URL}/api/rooms`);
     if (!publicRoomsResponse.ok) {
       throw new Error(`HTTP error! status: ${publicRoomsResponse.status}`);
     }
@@ -161,7 +161,7 @@ export const fetchAvailableRooms = async (username) => {
     console.log('Public rooms:', publicRooms);
     
     // Get rooms where user is explicitly added (for private rooms)
-    const userInRoomsResponse = await fetch(`${ENDPOINT}/api/rooms-with-user/${username}`);
+    const userInRoomsResponse = await fetch(`${API_URL}/api/rooms/rooms-with-user/${username}`);
     let roomsWithUser = [];
     if (userInRoomsResponse.ok) {
       roomsWithUser = await userInRoomsResponse.json();
@@ -182,7 +182,7 @@ export const fetchAvailableRooms = async (username) => {
 export const fetchRoomRequests = async (username) => {
   try {
     console.log('Fetching room access requests for', username);
-    const response = await fetch(`${API_URL}/api/room-requests/${username}`);
+    const response = await fetch(`${API_URL}/api/rooms/requests/${username}`);
     
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
@@ -201,7 +201,7 @@ export const fetchRoomRequests = async (username) => {
 export const fetchRoomInvitations = async (username, currentInvitations = []) => {
   try {
     console.log('Fetching room invitations for', username);
-    const response = await fetch(`${ENDPOINT}/api/room-invitations/${username}`);
+    const response = await fetch(`${API_URL}/api/rooms/invitations/${username}`);
     
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
