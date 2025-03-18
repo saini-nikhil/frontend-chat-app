@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import "./Style/login&registerpage.css"
-const API_URL = 'http://localhost:5001';
+const API_URL = 'https://chatappbackend-y3rm.onrender.com/';
 
 function Login({ logIn }) {
   const [username, setUsername] = useState('');

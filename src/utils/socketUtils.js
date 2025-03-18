@@ -1,7 +1,7 @@
 import io from 'socket.io-client';
 import { v4 as uuidv4 } from 'uuid';
 
-const ENDPOINT = 'http://localhost:5001';
+const ENDPOINT = 'https://chatappbackend-y3rm.onrender.com/';
 export const API_URL = ENDPOINT;
 
 // Initialize socket connection
